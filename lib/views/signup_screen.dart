@@ -24,7 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _formKey.currentState!.save();
       print('User Sign Up Data $userSignupData');
       authController.userSignUp(
-          userSignupData['email'], userSignupData['password']);
+          userSignupData['email'], userSignupData['password'], userSignupData['username']);
     }
   }
 
@@ -33,8 +33,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Firebase & Flutter'),
-        backgroundColor: Color.fromARGB(255, 12, 32, 47),
+        title: const Text('Firebase & Flutter'),
+        backgroundColor: const Color.fromARGB(255, 12, 32, 47),
       ),
       body: Card(
         child: Container(
@@ -54,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   TextFormField(
@@ -77,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       userSignupData['username'] = value!;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
@@ -100,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       userSignupData['email'] = value!;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
@@ -123,16 +123,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       userSignupData['password'] = value!;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
                     onPressed: signUp,
-                    child: Text('Submit'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       minimumSize: const Size.fromHeight(50), // NEW
                     ),
+                    child: const Text('Submit'),
                   ),
                 ],
               ),
