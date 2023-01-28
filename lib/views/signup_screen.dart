@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/authentication_methods.dart';
+import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';

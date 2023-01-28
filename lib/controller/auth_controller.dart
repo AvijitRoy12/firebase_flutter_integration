@@ -1,13 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import '../views/home_screen.dart';
 
 class AuthController extends GetxController {
-  
+  var userId;
   Future<void> userSignUp(email, password, username) async {
     try {
       UserCredential userCredential =
@@ -16,7 +14,7 @@ class AuthController extends GetxController {
         password: password,
       );
 
-try {
+      try {
         var response =
             await FirebaseFirestore.instance.collection('userslist').add({
           'user_Id': userCredential.user!.uid,
@@ -45,11 +43,14 @@ try {
   Future<void> userSignIn(email, password) async {
     print('$email, $password');
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      userId = userCredential.user!.uid;
       EasyLoading.showSuccess("Login Successful");
+      Get.to(HomeScreen());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         EasyLoading.showError("No user found for that email");
@@ -60,4 +61,7 @@ try {
       }
     }
   }
+
+  Future<void> signOut() async {
+  await FirebaseAuth.instance.signOut();}
 }

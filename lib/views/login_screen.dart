@@ -1,8 +1,13 @@
+import 'package:ecommerce_app/views/demo_data_screen.dart';
+import 'package:ecommerce_app/views/demo_provider_data_screen.dart';
+import 'package:ecommerce_app/views/provider_test.dart';
 import 'package:ecommerce_app/views/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import '../controller/authentication_methods.dart';
+import '../controller/auth_controller.dart';
+import '../screens/category.dart';
+import '../screens/general_products.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -31,10 +36,13 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(
+        color: const Color(0xFF151026),
+      )),
       builder: EasyLoading.init(),
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 12, 32, 47),
           centerTitle: true,
           title: const Text('Firebase & Flutter'),
         ),
@@ -117,7 +125,31 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           Get.to(() => SignUpScreen());
                         },
-                        child: const Text("Need an account? SignUp"))
+                        child: const Text("Need an account? SignUp")),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(() => DemoDataScreen());
+                      },
+                      child: const Text("Demo Data"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(() => HomePage());
+                      },
+                      child: const Text("Provider Data"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(() => Home());
+                      },
+                      child: const Text("Products"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(() => MyWidget());
+                      },
+                      child: const Text("Clothing"),
+                    ),
                   ],
                 ),
               ),
